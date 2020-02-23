@@ -64,7 +64,7 @@ class BuilD_UI():
 		TextBox.insert(END, "Uploaded on   : 23/Feb/2020\n")
 		TextBox.insert(END, "Developer     : Rishikesh Sarode\n")
 		TextBox.insert(END, "Contact       : rishisarode99@gmail.com\n")
-		TextBox.insert(END, "Github        : rishisarode99@gmail.com\n")
+		TextBox.insert(END, "Github        : https://github.com/rishi-99\n")
 		TextBox.place(x=5, y=5)
 		TextBox.config(state=DISABLED)
 		root.mainloop()
