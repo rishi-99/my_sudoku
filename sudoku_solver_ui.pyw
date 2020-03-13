@@ -10,7 +10,7 @@ from tkinter import Tk
 from tkinter import messagebox,filedialog
 import random
 from random import shuffle
-
+import threading
 
 
 class BuilD_UI():
@@ -27,7 +27,12 @@ class BuilD_UI():
 
 
 		self.Add_grid()
-		self.Button_(self.root,'Solve',self.Solve, 20,80,280,50)
+
+
+		def spawn_thread():
+			threading.Thread(target=self.Solve).start()
+				
+		self.Button_(self.root,'Solve',spawn_thread, 20,80,280,50)
 		self.next_ = self.Button_(self.root,'>',lambda :self.display_solutions(1),20,40,260,460)
 		self.prev_ = self.Button_(self.root,'<',lambda :self.display_solutions(-1),20,40,80,460)
 		self.next_['state']='disable'
@@ -44,8 +49,8 @@ class BuilD_UI():
 		level = OptionMenu(self.root, self.level, *levels)
 		level.place(x=290,y=0)
 
-		label = Label(self.root, textvariable=self.solution_status)
-		label.place(x=150, y=460)
+		self.status_label = Label(self.root, textvariable=self.solution_status)
+		self.status_label.place(x=150, y=460)
 		label = Label(self.root,text= 'Level')
 		label.place(x=250, y=3)
 
@@ -169,7 +174,7 @@ class BuilD_UI():
 
 
 	def Solve(self):
-
+		self.status_label.set("Solving..")
 		self.clear_highlights()
 		self.my_grid = self.get_grid_values()
 		try:
@@ -194,7 +199,7 @@ class BuilD_UI():
 
 			self.solution_status.set('- - -')
 			messagebox.showerror('Bad values', 'Bad values in Grid')
-			
+		
 			
 			
 	def display_solutions(self,nav):
