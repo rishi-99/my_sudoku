@@ -174,7 +174,7 @@ class BuilD_UI():
 
 
 	def Solve(self):
-		self.status_label.set("Solving..")
+		self.solution_status.set("Solving..")
 		self.clear_highlights()
 		self.my_grid = self.get_grid_values()
 		try:
